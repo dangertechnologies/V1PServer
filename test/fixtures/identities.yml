@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: identities
+#
+#  id            :integer          not null, primary key
+#  admin_id      :integer          not null
+#  provider      :string
+#  uid           :string
+#  token         :string
+#  token_expires :datetime
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
+one:
+  admin: one
+  provider: MyString
+  uid: MyString
+  token: MyString
+  token_expires: 2020-04-11 17:08:08
+
+two:
+  admin: two
+  provider: MyString
+  uid: MyString
+  token: MyString
+  token_expires: 2020-04-11 17:08:08

@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: admins
+#
+#  id             :integer          not null, primary key
+#  name           :string
+#  phone          :string
+#  invite_code_id :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
+one:
+  name: MyString
+  phone: MyString
+  invite_code: one
+
+two:
+  name: MyString
+  phone: MyString
+  invite_code: two

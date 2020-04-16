@@ -1,0 +1,33 @@
+# == Schema Information
+#
+# Table name: businesses
+#
+#  id              :integer          not null, primary key
+#  name            :string
+#  address         :string
+#  phone_number    :string
+#  description     :string
+#  is_enabled      :boolean
+#  is_subscribed   :boolean
+#  last_payment_at :datetime
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
+one:
+  name: MyString
+  address: MyString
+  phone_number: MyString
+  description: MyString
+  is_enabled: false
+  is_subscribed: false
+  last_payment_at: 2020-04-05 16:24:06
+
+two:
+  name: MyString
+  address: MyString
+  phone_number: MyString
+  description: MyString
+  is_enabled: false
+  is_subscribed: false
+  last_payment_at: 2020-04-05 16:24:06
