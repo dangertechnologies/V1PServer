@@ -5,5 +5,6 @@ module Types
     field :name, String, null: false
     field :color, String, null: false
     field :description, String, null: false
+    field :user_count, Integer, null: false
   end
 end

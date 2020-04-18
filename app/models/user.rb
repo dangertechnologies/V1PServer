@@ -18,4 +18,5 @@ class User < ApplicationRecord
   belongs_to :tier
   has_one_base64_attached :avatar
   has_many :visits
+  counter_culture :tier, column_name: "user_count"
 end

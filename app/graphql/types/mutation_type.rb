@@ -29,4 +29,7 @@ class Types::MutationType < Types::BaseObject
 
   field :update_tier, null: false, resolver: Mutations::UpdateTier,
   description: "Update an existing tier for a business"
+
+  field :delete_tier, null: false, resolver: Mutations::DeleteTier,
+  description: "Delete a membership tier"
 end
