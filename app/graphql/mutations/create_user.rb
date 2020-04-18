@@ -5,7 +5,7 @@ class Mutations::CreateUser < Mutations::BaseMutation
   argument :first_name, String, required: true
   argument :last_name, String, required: true
   argument :phone, String, required: true
-  argument :avatar, String, required: true
+  argument :avatar, String, required: false
   argument :card_number, String, required: true
   argument :tier_id, Integer, required: true
 
