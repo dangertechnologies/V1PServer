@@ -23,4 +23,10 @@ class Types::MutationType < Types::BaseObject
 
   field :create_visit, null: false, resolver: Mutations::CreateVisit,
   description: "Check a user in and increment visit count"
+
+  field :create_tier, null: false, resolver: Mutations::CreateTier,
+  description: "Create a new membership tier for a business"
+
+  field :update_tier, null: false, resolver: Mutations::UpdateTier,
+  description: "Update an existing tier for a business"
 end

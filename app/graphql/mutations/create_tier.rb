@@ -1,38 +1,28 @@
-class Mutations::UpdateBusiness < Mutations::BaseMutation
+class Mutations::CreateTier < Mutations::BaseMutation
   requires_authentication!
   null true
 
-  argument :id, Integer, required: true
-  argument :name, String, required: false
-  argument :logo, String, required: false
-  argument :address, String, required: false
-  argument :phone_number, String, required: false
-  argument :description, String, required: false
+  argument :business_id, Integer, required: true
+  argument :name, String, required: true
 
   field :business, Types::BusinessType, null: true
   field :errors, [String], null: false
 
-  def resolve(id: nil, name: nil, logo: nil, description: nil, address: nil)
-    business = Business.find(id).assign_attributes(
-      {
-        name: name,
-        address: address,
-        phone_number: phone_number,
-        description: description,
-      }.reject { |(_, v)| v.nil? }
-    )
-    
-    if logo.present?
-      business.logo.attach(data: logo)
-    end
+  def resolve(business_id: nil, name: string)
+    business = Business.find(business_id)
 
-    busines.save!
+    business.tiers.create!(
+      name: name
+    )
+
+    business.reload
+
     # Successful creation, return the created object with no errors
     {
       business: business,
       errors: [],
     }
-    
+
   rescue CanCan::AccessDenied => exception
     {
       business: nil,

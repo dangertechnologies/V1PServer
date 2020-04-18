@@ -8,12 +8,11 @@ class Mutations::CreateBusiness < Mutations::BaseMutation
   argument :description, String, required: true
   argument :address, String, required: true
   argument :logo, String, required: false
-  argument :tiers, [String], required: true
 
   field :business, Types::BusinessType, null: true
   field :errors, [String], null: false
 
-  def resolve(name: nil, logo: nil, description: nil, phone_number: nil, address: nil, tiers: nil)
+  def resolve(name: nil, logo: nil, description: nil, phone_number: nil, address: nil)
     business = Business.create(
       name: name,
       address: address,
@@ -26,11 +25,6 @@ class Mutations::CreateBusiness < Mutations::BaseMutation
     end
 
     business.save!
-    tiers.each do |tier|
-      business.tiers.create(
-        name: tier
-      )
-    end
 
     unless context[:current_user].nil?
       InviteCode.create(
