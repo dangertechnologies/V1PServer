@@ -13,7 +13,7 @@ gem 'puma', '~> 4.1'
 
 gem 'graphql', '~> 1.9.18'
 gem 'graphiql-rails'
-
+gem 'mimemagic'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 

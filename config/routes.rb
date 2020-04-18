@@ -4,4 +4,7 @@ Rails.application.routes.draw do
   end
   post "/graphql", to: "graphql#execute"
   get "/graphql", to: "graphql#index"
+
+  get '/asset/avatar/:id', to: "assets#avatar"
+  get '/asset/logo/:id', to: "assets#logo"
 end
