@@ -25,18 +25,33 @@ class Mutations::CreateUser < Mutations::BaseMutation
       user.avatar.attach(data: avatar)
     end
     
-    if user.save
-      # Successful creation, return the created object with no errors
-      {
-        user: user,
-        errors: [],
-      }
-    else
-      # Failed save, return the errors to the client
-      {
-        user: nil,
-        errors: user.errors.full_messages
-      }
-    end
+    user.save!
+    # Successful creation, return the created object with no errors
+    {
+      user: user,
+      errors: [],
+    }
+  rescue CanCan::AccessDenied => exception
+    {
+      user: nil,
+      errors: [exception.message]
+    }
+  rescue ActiveRecord::RecordInvalid => invalid
+    # Failed save, return the errors to the client
+    {
+      user: nil,
+      errors: invalid.record.errors.full_messages
+    }
+  rescue ActiveRecord::RecordNotSaved => error
+    # Failed save, return the errors to the client
+    {
+      user: nil,
+      errors: invalid.record.errors.full_messages
+    }
+  rescue ActiveRecord::RecordNotFound => error
+    {
+      user: nil,
+      errors: [ error.message ]
+    }
   end
 end

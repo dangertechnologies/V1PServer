@@ -18,5 +18,28 @@ class Mutations::CreateVisit < Mutations::BaseMutation
       user: user,
       errors: [],
     }
+
+  rescue CanCan::AccessDenied => exception
+    {
+      user: nil,
+      errors: [exception.message]
+    }
+  rescue ActiveRecord::RecordInvalid => invalid
+    # Failed save, return the errors to the client
+    {
+      user: nil,
+      errors: invalid.record.errors.full_messages
+    }
+  rescue ActiveRecord::RecordNotSaved => error
+    # Failed save, return the errors to the client
+    {
+      user: nil,
+      errors: invalid.record.errors.full_messages
+    }
+  rescue ActiveRecord::RecordNotFound => error
+    {
+      user: nil,
+      errors: [ error.message ]
+    }
   end
 end
