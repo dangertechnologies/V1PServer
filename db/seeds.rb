@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require "open-uri"
 
-if Rails.env.development?
+unless Rails.env.production?
   # Create a fake business
   business = Business.create!(
     name: "Demo",
