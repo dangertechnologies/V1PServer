@@ -16,7 +16,7 @@
 class User < ApplicationRecord
   include ActiveStorageSupport::SupportForBase64
   belongs_to :tier
-  belongs_to :business, through: :tier
+  delegate :business, to: :tier
   has_one_base64_attached :avatar
   has_many :visits
   counter_culture :tier, column_name: "user_count"
