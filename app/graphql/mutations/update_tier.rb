@@ -11,7 +11,7 @@ class Mutations::UpdateTier < Mutations::BaseMutation
   def resolve(tier_id: nil, name: string)
     tier = Tier.where(
       business: context[:current_user].businesses
-    ).where(tier_id: tier_id)
+    ).find_by(id: tier_id)
 
     tier.assign_attributes(
       name: name,
