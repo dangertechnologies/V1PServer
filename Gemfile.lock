@@ -70,7 +70,7 @@ GEM
       rack-oauth2 (~> 1.11)
     attr_required (1.0.1)
     bcrypt (3.1.13)
-    bindata (2.4.7)
+    bindata (2.4.10)
     bindex (0.8.1)
     bootsnap (1.4.6)
       msgpack (~> 1.0)
